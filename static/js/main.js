@@ -7,6 +7,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const editItemInput = document.getElementById('editItemInput');
     const saveEditBtn = document.getElementById('saveEdit');
     const cancelEditBtn = document.getElementById('cancelEdit');
+    const lastUpdatedElement = document.getElementById('lastUpdated');
+
+    // 最終更新日時の更新関数
+    function updateLastModified() {
+        const now = new Date();
+        const options = {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        };
+        lastUpdatedElement.textContent = now.toLocaleString('ja-JP', options);
+    }
+
+    // 初期表示時に最終更新日時を設定
+    updateLastModified();
     
     let currentEditItem = null;
 
@@ -17,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (itemName) {
             addNewItem(itemName);
             newItemInput.value = '';
+            updateLastModified();
         }
     });
 
@@ -64,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             listItem.classList.remove('completed');
         }
+        updateLastModified();
     }
 
     // 既存のチェックボックスにイベントリスナーを追加
@@ -92,6 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
             currentEditItem.querySelector('.item-name').textContent = newName;
             editModal.style.display = 'none';
             currentEditItem = null;
+            updateLastModified();
         }
     });
 
@@ -106,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (confirm('本当にこの商品を削除しますか？')) {
             const listItem = e.target.closest('.list-item');
             listItem.remove();
+            updateLastModified();
         }
     }
 
