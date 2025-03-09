@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>買い物リスト</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <!-- ヘッダー -->
@@ -25,31 +25,7 @@
 
         <!-- アイテムリスト -->
         <div class="shopping-list" id="shoppingList">
-            <!-- サンプルアイテム（動作確認用） -->
-            <div class="list-item">
-                <input type="checkbox" id="item1">
-                <span class="item-name">牛乳</span>
-                <div class="item-actions">
-                    <button class="edit-btn">編集</button>
-                    <button class="delete-btn">削除</button>
-                </div>
-            </div>
-            <div class="list-item completed">
-                <input type="checkbox" id="item2" checked>
-                <span class="item-name">パン</span>
-                <div class="item-actions">
-                    <button class="edit-btn">編集</button>
-                    <button class="delete-btn">削除</button>
-                </div>
-            </div>
-            <div class="list-item">
-                <input type="checkbox" id="item3">
-                <span class="item-name">卵</span>
-                <div class="item-actions">
-                    <button class="edit-btn">編集</button>
-                    <button class="delete-btn">削除</button>
-                </div>
-            </div>
+            <!-- アイテムは JavaScript で動的に追加されます -->
         </div>
     </main>
 
@@ -69,6 +45,6 @@
         </div>
     </div>
 
-    <script src="/static/js/main.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
